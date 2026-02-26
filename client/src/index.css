@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Premium Professional Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 224 71% 4%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 83% 58%;
+    --radius: 1rem;
+
+    /* AI Colors */
+    --ai-primary: 262 83% 58%;
+    --ai-secondary: 280 70% 50%;
+    --ai-glow: 262 83% 58%;
+    --ai-message-bg: 262 40% 98%;
+    --ai-gradient-start: 262 83% 58%;
+    --ai-gradient-end: 280 70% 50%;
+
+    /* Sidebar */
+    --sidebar-bg: 220 14% 98%;
+    --sidebar-hover: 262 40% 95%;
+
+    /* Success/Warning */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 4.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262 83% 65%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 262 83% 65%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 262 83% 65%;
+
+    /* AI Colors Dark */
+    --ai-primary: 262 83% 65%;
+    --ai-secondary: 280 70% 60%;
+    --ai-glow: 262 83% 65%;
+    --ai-message-bg: 262 30% 10%;
+    --ai-gradient-start: 262 83% 65%;
+    --ai-gradient-end: 280 70% 60%;
+
+    /* Sidebar Dark */
+    --sidebar-bg: 240 10% 6%;
+    --sidebar-hover: 262 30% 14%;
+
+    /* Success/Warning */
+    --success: 142 70% 45%;
+    --warning: 38 92% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    font-family: "Outfit", "Inter", system-ui, sans-serif;
+  }
+}
+
+/* ============================================
+   GLASSMORPHISM & PREMIUM EFFECTS
+   ============================================ */
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-2xl bg-white/60 dark:bg-black/40 border border-white/20 dark:border-white/5;
+    box-shadow:
+      0 4px 24px -1px rgba(0, 0, 0, 0.05),
+      0 12px 48px -2px rgba(0, 0, 0, 0.04),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/70 dark:bg-white/5 border border-white/20 dark:border-white/10;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .glass-card-dark {
+    @apply backdrop-blur-xl bg-black/20 dark:bg-black/40 border border-white/10;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .premium-card {
+    @apply bg-gradient-to-b from-white to-gray-50/80 dark:from-gray-900 dark:to-gray-950 rounded-2xl border border-border/50;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.02),
+      0 8px 16px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-card:hover {
+    @apply border-primary/20;
+    box-shadow:
+      0 20px 40px -12px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+/* ============================================
+   AI MESSAGE STYLES
+   ============================================ */
+@layer components {
+  .ai-message {
+    @apply relative overflow-hidden rounded-2xl p-5;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--ai-message-bg)) 0%,
+      hsl(var(--ai-message-bg) / 0.8) 100%
+    );
+    border: 1px solid hsl(var(--ai-primary) / 0.15);
+  }
+
+  .ai-message::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      hsl(var(--ai-gradient-start)),
+      hsl(var(--ai-gradient-end)),
+      hsl(var(--ai-gradient-start))
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .ai-glow {
+    box-shadow:
+      0 0 30px hsl(var(--ai-glow) / 0.1),
+      0 0 60px hsl(var(--ai-glow) / 0.05);
+  }
+}
+
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--ai-glow) / 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--ai-glow) / 0.4);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-reveal {
+    animation: reveal-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-flow 6s linear infinite;
+  }
+}
+
+/* ============================================
+   UI ENHANCEMENTS
+   ============================================ */
+@layer components {
+  .sidebar-item {
+    @apply relative flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-300;
+  }
+
+  .sidebar-item:hover {
+    @apply bg-primary/5 text-primary;
+  }
+
+  .sidebar-item.active {
+    @apply bg-primary text-primary-foreground shadow-lg shadow-primary/20;
+  }
+
+  .btn-primary-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--ai-gradient-start)),
+      hsl(var(--ai-gradient-end))
+    );
+  }
+
+  .btn-primary-glow::after {
+    content: "";
+    @apply absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-primary-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  .btn-primary-glow:hover {
+    @apply shadow-xl shadow-primary/30 -translate-y-0.5;
+  }
+
+  .input-glow:focus {
+    @apply ring-4 ring-primary/10 border-primary/40 bg-background transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--ai-gradient-start))] to-[hsl(var(--ai-gradient-end))] animate-gradient;
+  }
+}
+
+/* ============================================
+   SCROLLBAR & MISC
+   ============================================ */
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/10 rounded-full hover:bg-muted-foreground/20 transition-colors;
+}
+
+.prose {
+  @apply leading-relaxed;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  @apply font-bold tracking-tight text-foreground mt-6 mb-4;
+}
+
+.prose p {
+  @apply mb-4 text-foreground/80;
+}
+
+.prose pre {
+  @apply rounded-2xl bg-muted/50 border border-border/50 p-4 font-mono text-sm overflow-x-auto my-6;
+}
+
+/* Mobile Responsiveness Helpers */
+@media (max-width: 768px) {
+  .glass-panel {
+    @apply backdrop-blur-lg;
+  }
+}
